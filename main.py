@@ -23,28 +23,19 @@ time.sleep(2)
 driver.execute_script("f_moveBYPJGSBISTIJBGongSeokJH_P();")
 time.sleep(1)
 driver.switch_to.window(driver.window_handles[1])
-select_month = driver.find_elements(
-    By.XPATH, "//*[@id='contents']/div/form/table/tbody/tr/td[1]/select[2]/*"
-)
+select_month = driver.find_elements(By.XPATH, "//*[@id='contents']/div/form/table/tbody/tr/td[1]/select[2]/*")
 for option in select_month:
     option_text = option.get_attribute("text")
     print(option_text[1] if option_text[0] == "0" else option_text, end=" ")
-
 month = input("중 희망 월을 입력하세요: ")
 if len(month) == 1:
     month = "0" + month
-Select(
-    driver.find_element(
-        By.XPATH, "//*[@id='contents']/div/form/table/tbody/tr/td[1]/select[2]"
-    )
-).select_by_visible_text(month)
+Select(driver.find_element(By.XPATH, "//*[@id='contents']/div/form/table/tbody/tr/td[1]/select[2]")).select_by_visible_text(month)
 
 while True:
     driver.execute_script("f_moveBYPJGSBISTIJBGongSeokJH_P();")
     try:
-        js = driver.find_element(
-            By.XPATH, "/html/body/div/div/div/table/tbody/tr[1]"
-        ).get_attribute("onclick")
+        js = driver.find_element(By.XPATH, "/html/body/div/div/div/table/tbody/tr[1]").get_attribute("onclick")
         if js is not None:
             driver.execute_script(js)
             break
@@ -58,5 +49,3 @@ driver.switch_to.frame(driver.find_element(By.ID, "main"))
 time.sleep(1)
 driver.execute_script("f_registMinWon_JS();")
 driver.switch_to.alert.accept()
-
-time.sleep(10000)
