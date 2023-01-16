@@ -7,7 +7,6 @@ import time
 
 link = "https://mwpt.mma.go.kr/caisBMHS/index_mwps.jsp?menuNo=22223"
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
 driver.get(link)
 time.sleep(5)
 driver.switch_to.frame(driver.find_element(By.ID, "main"))
